@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
+    "test": "node ./node_modules/jasmine/bin/jasmine.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.19",
+    "node-fetch": "^2.6.1",
+    "rxjs": "^6.6.0",
+    "rxjs-compat": "^6.6.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.6.1"
+  }
+}

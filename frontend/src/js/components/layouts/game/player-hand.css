@@ -1,0 +1,24 @@
+/*
+css
+ */
+.c-player-hand.is-closed .cards {
+    /*display: none;*/
+    height: 0;
+}
+
+.c-player-hand.is-closed .cards {
+    /*display: none;*/
+    height: 100%;
+}
+
+
+.c-player-hand .cards > .c-card {
+    margin: 5px;
+}
+
+.c-player-hand .c-toggle-button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -1,0 +1,24 @@
+{
+    "blackCards": [
+        {
+            "text": "Let me tell you about my new startup. It's basically _, but for _.",
+            "pick": 2
+        },
+        {
+            "text": "_ was totally worth the trauma.",
+            "pick": 1
+        }
+    ],
+    "whiteCards": [
+        "Rubbing chocolate pudding all over Bill Cosby's nipples.",
+        "A floor that is literally made of lava.",
+        "What The Rock was really cooking.",
+        "All this liquid in my mouth.",
+        "Giving a dolphin a handjob for science.",
+        "Exciting content!",
+        "Hodor.",
+        "Stepping on a god damn friggin' LEGO."
+    ],
+    "_id": "5c7cb2cb5325d3f87c81b464",
+    "setName": "PAXEP2014"
+}
