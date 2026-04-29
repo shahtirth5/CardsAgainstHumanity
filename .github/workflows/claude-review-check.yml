@@ -1,0 +1,56 @@
+# .github/workflows/claude-review-check.yml
+name: Claude Review Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created, edited, deleted]
+
+jobs:
+  check-claude-review:
+    runs-on: ubuntu-latest
+    # issue_comment fires for both issues and PRs — gate to PRs only
+    if: github.event_name == 'pull_request' || github.event.issue.pull_request
+    permissions:
+      pull-requests: read
+      statuses: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const MARKER = '## Claude PR Review';  // <-- your specific title/string
+
+            const prNumber =
+              context.payload.pull_request?.number ?? context.payload.issue.number;
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+            const sha = pr.head.sha;
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                per_page: 100,
+              }
+            );
+
+            const hasReview = comments.some(c => c.body?.includes(MARKER));
+
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha,
+              state: hasReview ? 'success' : 'failure',
+              context: 'Claude PR Review',
+              description: hasReview
+                ? 'Claude review found'
+                : 'Run the Claude review and post it as a comment',
+              target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${prNumber}`,
+            });
