@@ -48,7 +48,7 @@ jobs:
               repo: context.repo.repo,
               sha,
               state: hasReview ? 'success' : 'failure',
-              context: 'Claude PR Review',
+              context: 'Claude Review Check',
               description: hasReview
                 ? 'Claude review found'
                 : 'Run the Claude review and post it as a comment',
